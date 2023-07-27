@@ -1,6 +1,6 @@
 package frc.robot.sub;
 
-public class SubSystems
+public class ControlSubSystems
 {
     public void start()
     {

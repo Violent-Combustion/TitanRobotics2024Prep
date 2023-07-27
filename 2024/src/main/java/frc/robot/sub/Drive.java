@@ -1,22 +1,21 @@
 package frc.robot.sub;
 
 import frc.robot.data.PortMap;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
+import frc.robot.sub.ModifiedMotor;
 
-public class Drive extends SubSystems
+public class Drive extends ControlSubSystems
 {
-    private final MotorController motorFrontLeft;
-    private final MotorController motorRearLeft;
-    private final MotorController motorFrontRight;
-    private final MotorController motorRearRight;
+    private final ModifiedMotor motorFrontLeft;
+    private final ModifiedMotor motorRearLeft;
+    private final ModifiedMotor motorFrontRight;
+    private final ModifiedMotor motorRearRight;
     
    public Drive() 
    {
-          motorFrontLeft = new PWMVictorSPX(PortMap.FRONTLEFT.portNumber);
-          motorRearLeft = new PWMVictorSPX(PortMap.REARLEFT.portNumber);
-          motorFrontRight = new PWMVictorSPX(PortMap.FRONTRIGHT.portNumber);
-          motorRearRight = new PWMVictorSPX(PortMap.REARRIGHT.portNumber); 
+          motorFrontLeft = new ModifiedMotor(PortMap.FRONTLEFT.portNumber);
+          motorRearLeft = new ModifiedMotor(PortMap.REARLEFT.portNumber);
+          motorFrontRight = new ModifiedMotor(PortMap.FRONTRIGHT.portNumber);
+          motorRearRight = new ModifiedMotor(PortMap.REARRIGHT.portNumber); 
    }
 
 /**  Control Type: Left Stick controls Left side of Robot; Right Stick Control Right side of Robot */
@@ -47,7 +46,7 @@ public class Drive extends SubSystems
 
    public void update()
    {
-    motorFrontLeft.set(this.driveSave.frontleft);
+     motorFrontLeft.set(this.driveSave.frontleft);
     motorRearRight.set(this.driveSave.backright);
     motorRearLeft.set(this.driveSave.backleft);
     motorFrontRight.set(this.driveSave.frontright);
