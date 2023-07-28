@@ -1,6 +1,6 @@
 package frc.robot.sub;
 
-public class ControlSubSystems
+public abstract class ControlSubSystems
 {
     public void start()
     {
@@ -9,7 +9,7 @@ public class ControlSubSystems
 
     public void update()
     {
-        //runs every loop
+        
     }
 
 }
