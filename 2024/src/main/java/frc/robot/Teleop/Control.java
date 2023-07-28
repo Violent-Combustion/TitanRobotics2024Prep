@@ -13,6 +13,11 @@ public class Control extends Teleopsubsystem {
         drive = new Drive();
         controllers = new Controllers();
     }
+    public void telopUpdate()
+    {
+        this.tank();
+        drive.update();
+    } 
 
     public void tank(){
         double xboxLeftStickYInput = controllers.getStick(ButtonMap.XboxLEFTSTICKY);

@@ -9,13 +9,14 @@ public class Drive extends ControlSubSystems
     private final ModifiedMotor motorRearLeft;
     private final ModifiedMotor motorFrontRight;
     private final ModifiedMotor motorRearRight;
-    
+    DriveSave driveSave;
    public Drive() 
    {
           motorFrontLeft = new ModifiedMotor(PortMap.FRONTLEFT.portNumber);
           motorRearLeft = new ModifiedMotor(PortMap.REARLEFT.portNumber);
           motorFrontRight = new ModifiedMotor(PortMap.FRONTRIGHT.portNumber);
           motorRearRight = new ModifiedMotor(PortMap.REARRIGHT.portNumber); 
+          driveSave = new DriveSave();
    }
 
 /**  Control Type: Left Stick controls Left side of Robot; Right Stick Control Right side of Robot */
@@ -42,8 +43,8 @@ public class Drive extends ControlSubSystems
      public double backleft;
      public double backright;
    }
-   DriveSave driveSave = new DriveSave();
 
+   @Override
    public void update()
    {
      motorFrontLeft.set(this.driveSave.frontleft);

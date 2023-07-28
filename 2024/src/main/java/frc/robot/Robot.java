@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Teleop.Control;
-import frc.robot.sub.Controllers;
-import frc.robot.sub.Drive;
-import frc.robot.sub.ModifiedMotor;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,7 +19,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  private final ModifiedMotor modifiedMotor;
+  private static Control control;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,7 +30,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    
+    control = new Control();
     
   }
 
@@ -83,11 +80,15 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+
+  }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    control.telopUpdate();
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
