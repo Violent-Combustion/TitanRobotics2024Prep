@@ -3,7 +3,7 @@ package frc.robot.sub;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.data.ButtonMap;
 import frc.robot.data.PortMap;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.HashMap;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -14,7 +14,15 @@ public class Controllers extends ControlSubSystems { // may whant to rewright so
     private double debouncePeriod = 0.1; //The time before a button is allowed to be pressed again in seconds
     public Controllers()
     {
-        this.xboxController = new XboxController(PortMap.GAMEPADXBOX.portNumber);
+        try 
+        {
+            this.xboxController = new XboxController(PortMap.GAMEPADXBOX.portNumber);
+        }
+        catch (Exception xboxControllerNotAssigned) 
+        {
+            this.xboxController = null;
+            SmartDashboard.putNumber("XboxControllerNotFound", PortMap.GAMEPADXBOX.portNumber);
+        }
         this.buttons = new HashMap<ButtonMap, Double>();
         init();
     }
@@ -31,7 +39,7 @@ public class Controllers extends ControlSubSystems { // may whant to rewright so
     {
     
         double currentTime = Timer.getFPGATimestamp();
-        if(currentTime - buttons.get(buttonName) > this.debouncePeriod)
+        if(currentTime - buttons.get(buttonName) > this.debouncePeriod && this.xboxController != null)
         {
             buttons.replace(buttonName, currentTime);
             return xboxController.getRawButton(buttonName.value);
@@ -43,26 +51,43 @@ public class Controllers extends ControlSubSystems { // may whant to rewright so
     }
     
     public boolean getButtonXboxPressedDebounceOff(ButtonMap buttonName) //Input the ButtonMap name and receive if button is pressed, boolean true or false; does not have debounce (allows for motors to be triggered by press and hold until button is released)
-    {
-        return xboxController.getRawButton(buttonName.value);
+    {   if (this.xboxController != null)
+        {
+            return xboxController.getRawButton(buttonName.value);
+        }
+        else 
+        {
+            return false;
+        }
     }
 
     public double getStick(ButtonMap stickAxis) //Input the ButtonMap name and axis and receive its value, double between -1 and 1
-    {
-        switch(stickAxis)
+    {  if (this.xboxController != null)
+        {   try {
+            switch(stickAxis)
+            {
+                case XboxLEFTSTICKX:
+                    return xboxController.getRawAxis(0);
+                case XboxLEFTSTICKY:
+                    return xboxController.getRawAxis(1);
+                case XboxRIGHTSTICKX:
+                    return xboxController.getRawAxis(4); 
+                case XboxRIGHTSTICKY:
+                    return xboxController.getRawAxis(5); 
+                default:
+                    return 0;
+            }
+        }  
+        catch (Exception AxisNotFound) 
         {
-            case XboxLEFTSTICKX:
-                return xboxController.getRawAxis(0);
-            case XboxLEFTSTICKY:
-                return xboxController.getRawAxis(1);
-            case XboxRIGHTSTICKX:
-                return xboxController.getRawAxis(4); 
-            case XboxRIGHTSTICKY:
-                return xboxController.getRawAxis(5); 
-            default:
-                return 0;
-                
+            SmartDashboard.putString("ControllerError", "AxisNotFound");
+            return 0;
         }
+        } 
+        else 
+        {
+        return 0;
+        }     
     }
 
 }
