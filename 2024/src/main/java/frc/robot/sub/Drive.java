@@ -10,6 +10,15 @@ public class Drive extends ControlSubSystems
     private final ModifiedMotor motorFrontRight;
     private final ModifiedMotor motorRearRight;
     DriveSave driveSave;
+
+    private static Drive mInstance = null;
+
+    public static Drive getInstance() {
+      if (mInstance == null) {
+          mInstance = new Drive();
+      }
+      return mInstance;
+  }
    public Drive() 
    {
           motorFrontLeft = new ModifiedMotor(PortMap.FRONTLEFT.portNumber);

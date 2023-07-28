@@ -1,0 +1,12 @@
+package frc.robot.Auto.Missions;
+
+import frc.robot.Auto.AutoModeEndedException;
+import frc.robot.Auto.Actions.DriveForTimeAction;
+
+public class ExampleMission extends MissionBase {
+    @Override
+    protected void routine() throws AutoModeEndedException {
+        // TODO Auto-generated method stub
+        runAction(new DriveForTimeAction(5, 1));// may be milliseconds
+    }
+}
