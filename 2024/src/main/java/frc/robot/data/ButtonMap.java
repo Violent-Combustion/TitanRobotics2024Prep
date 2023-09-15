@@ -1,8 +1,10 @@
 package frc.robot.data;
 
-// This Enum stores values for all gamepad related inputs
-// -1 indicates a imaginary or placeholder value
-//Reference a value like so: ButtonMap.A.value
+/**
+ *This Enum stores values for all gamepad related inputs
+ *-1 indicates a imaginary or placeholder value
+ *Reference a value like so: ButtonMap.A.value
+ */
 
 public enum ButtonMap
 {
