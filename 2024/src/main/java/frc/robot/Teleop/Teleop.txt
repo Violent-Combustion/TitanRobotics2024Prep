@@ -1,0 +1,4 @@
+Teleop is were all subclasses solely used for
+when the human is in control are located.
+Current drive formats are:
+tank (each joystick controlls corisponding side)

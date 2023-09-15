@@ -19,6 +19,7 @@ public class Drive extends ControlSubSystems
       }
       return mInstance;
   }
+
    public Drive() 
    {
           motorFrontLeft = new ModifiedMotor(PortMap.FRONTLEFT.portNumber);
@@ -28,7 +29,7 @@ public class Drive extends ControlSubSystems
           driveSave = new DriveSave();
    }
 
-/**  Control Type: Left Stick controls Left side of Robot; Right Stick Control Right side of Robot */
+/**  Control Type: Left Stick controls Left side of Robot; Right Stick Control Right side of Robot (Used in tank)*/
    public void drive(double left, double right, double speed)// determins drriving type
    { 
      this.driveSave.frontleft = left;
@@ -36,7 +37,7 @@ public class Drive extends ControlSubSystems
      this.driveSave.frontright = right;
      this.driveSave.backright = right; 
    }
-/**  Control Type: Left Stick controls speed; Right Stick controls direction */
+/**  Control Type: Left Stick controls speed; Right Stick controls direction (Used in tank)*/
    public void drive(double forward, double turn)
    { 
      this.driveSave.frontleft = (-forward + (0.35 * turn));// + teleopDriftCorrect);  //subtract 0.02 here from leftY for Menoetius
@@ -45,6 +46,7 @@ public class Drive extends ControlSubSystems
      this.driveSave.backright = (forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.015 here to rightY forAnd-You
    }
 
+   /**Saves the current state the motors should be in */
    private class DriveSave
    {
      public double frontleft;
@@ -54,12 +56,13 @@ public class Drive extends ControlSubSystems
    }
 
    @Override
+   /**Updates the state the motors are in */
    public void update()
    {
      motorFrontLeft.set(this.driveSave.frontleft);
-    motorRearRight.set(this.driveSave.backright);
-    motorRearLeft.set(this.driveSave.backleft);
-    motorFrontRight.set(this.driveSave.frontright);
+     motorRearRight.set(this.driveSave.backright);
+     motorRearLeft.set(this.driveSave.backleft);
+     motorFrontRight.set(this.driveSave.frontright);
    }
 
     void tank()

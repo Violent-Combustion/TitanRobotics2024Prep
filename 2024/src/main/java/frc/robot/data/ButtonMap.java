@@ -6,6 +6,7 @@ package frc.robot.data;
 
 public enum ButtonMap
 {
+    //Xbox Controllers Button Map
     XboxA(1),
     XboxB(2),
     XboxX(3),
@@ -21,6 +22,7 @@ public enum ButtonMap
     XboxRIGHTSTICKX(-7),
     XboxRIGHTSTICKY(-8),
 
+    //Flight Stick Button Map
     FlightBUTTON1(1),
     FlightBUTTON2(2),
     FlightBUTTON3(3),

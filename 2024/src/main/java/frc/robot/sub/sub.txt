@@ -1,0 +1,15 @@
+Example:
+    file name:
+        Description: Description of Sub System
+        Inputs: Inputs required for Sub System
+        Outputs: Outputs if Sub System returns values
+Current:
+    Drive:
+        Description: used to control drive base.
+        Inputs: joysticks
+        Outputs: None
+
+    Controllers: (needs to be rewriten and added)
+
+Sub is a spliting of commonly used functions into their
+own files to increasing reablity and debuging of code.

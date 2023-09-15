@@ -35,7 +35,8 @@ public class Controllers extends ControlSubSystems { // may whant to rewright so
         }
     }
 
-    public boolean getButtonXboxPressed(ButtonMap buttonName) //Input the ButtonMap name and receive if button is pressed, boolean true or false; has debounce (time before button can output true again)
+    /**Input the ButtonMap name and receive if button is pressed, boolean true or false; has debounce (time before button can output true again) */
+    public boolean getButtonXboxPressed(ButtonMap buttonName) 
     {
     
         double currentTime = Timer.getFPGATimestamp();
@@ -50,7 +51,8 @@ public class Controllers extends ControlSubSystems { // may whant to rewright so
         }
     }
     
-    public boolean getButtonXboxPressedDebounceOff(ButtonMap buttonName) //Input the ButtonMap name and receive if button is pressed, boolean true or false; does not have debounce (allows for motors to be triggered by press and hold until button is released)
+    /**Input the ButtonMap name and receive if button is pressed, boolean true or false; does not have debounce (allows for motors to be triggered by press and hold until button is released) */
+    public boolean getButtonXboxPressedDebounceOff(ButtonMap buttonName) 
     {   if (this.xboxController != null)
         {
             return xboxController.getRawButton(buttonName.value);
@@ -61,7 +63,8 @@ public class Controllers extends ControlSubSystems { // may whant to rewright so
         }
     }
 
-    public double getStick(ButtonMap stickAxis) //Input the ButtonMap name and axis and receive its value, double between -1 and 1
+    /**Input the ButtonMap name and axis and receive its value, double between -1 and 1 */
+    public double getStick(ButtonMap stickAxis) 
     {  if (this.xboxController != null)
         {   try {
             switch(stickAxis)

@@ -1,0 +1,10 @@
+Example:
+    Example action:
+        Description: Description of action
+        Inputs: Inputs required for action
+        Outputs: Outputs if action returns values
+Curent Actions:
+
+Explanation: Actions are individual task
+for the robot to complet. These tasks are 
+not missions (see missions for more informations).
