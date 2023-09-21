@@ -11,29 +11,34 @@ public class ParallelAction implements Actions
     /**
      * Takes list of actions
      */
-    public ParallelAction(List<Actions> actions) {
+    public ParallelAction(List<Actions> actions)
+    {
         actionsToExecute = new ArrayList<>(actions);
     }
 
     /**
      * Takes array of actions
      */
-    public ParallelAction(Actions... actions) {
+    public ParallelAction(Actions... actions)
+    {
         actionsToExecute = new ArrayList<>(Arrays.asList(actions));
     }
 
     @Override
-    public void start() {
+    public void start()
+    {
         actionsToExecute.forEach(Actions::start);
     }
 
     @Override
-    public void update() {
+    public void update()
+    {
         actionsToExecute.forEach(Actions::update);
     }
 
     @Override
-    public boolean isFinished() {
+    public boolean isFinished()
+    {
         for (Actions action : actionsToExecute) {
             if (!action.isFinished()) { return false; }
         }
@@ -41,7 +46,8 @@ public class ParallelAction implements Actions
     }
 
     @Override
-    public void done() {
+    public void done()
+    {
         actionsToExecute.forEach(Actions::done);
     }
 }
