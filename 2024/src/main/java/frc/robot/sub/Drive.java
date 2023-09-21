@@ -56,7 +56,7 @@ public class Drive extends ControlSubSystems
    }
 
    @Override
-   /**Updates the state the motors are in */
+   /*Updates the state the motors are in */
    public void update()
    {
      motorFrontLeft.set(this.driveSave.frontleft);

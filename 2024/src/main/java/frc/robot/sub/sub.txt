@@ -12,4 +12,4 @@ Current:
     Controllers: (needs to be rewriten and added)
 
 Sub is a spliting of commonly used functions into their
-own files to increasing reablity and debuging of code.
+own files to increasing reability and debugging of code.
