@@ -9,6 +9,11 @@ ParallelAction:
     Description: runs several actions in the same cycle
     Inputs:
         takes a list of actions or an array of actions
+        Example:
+            runAction(new ParallelAction(
+                new WhateverAction(),
+                new WhateverAction()
+            ));
     Outputs:
         isFinished will return true if all actions are finished
 
@@ -16,6 +21,11 @@ SeriesAction:
     Description: runs several actions one after another
     Inputs:
         takes a list of actions or an array of actions; actions must be in order from first executed to last executed
+        Example:
+            runAction(new SeriesActionAction(
+                new WhateverAction(),
+                new WhateverActionThatHappensNext()
+            ));
     Outputs:
         isFinished will return true when all the actions have finished
 
