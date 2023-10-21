@@ -5,12 +5,13 @@ import frc.robot.data.ButtonMap;
 import frc.robot.sub.Controllers;
 
 public class Control extends Teleopsubsystem {
-    private TankDrive mDrive = null;
+    private TankDrive mTankDrive = null;
+    //private SwerveDrive mSwerveDrive = null;
     private final Controllers controllers;
 
     public Control()
     {
-        mDrive = TankDrive.getInstance();
+        mTankDrive = TankDrive.getInstance();
         controllers = new Controllers();
     }
 
@@ -18,7 +19,7 @@ public class Control extends Teleopsubsystem {
     public void telopUpdate()
     {
         this.tank();
-        mDrive.update();
+        mTankDrive.update();
     } 
 
     /**
@@ -28,7 +29,7 @@ public class Control extends Teleopsubsystem {
     public void tank(){
         double xboxLeftStickYInput = controllers.getStickXbox(ButtonMap.XboxLEFTSTICKY);
         double xboxRightStickXInput = controllers.getStickXbox(ButtonMap.XboxRIGHTSTICKX);
-        mDrive.tankDrive(xboxLeftStickYInput, xboxRightStickXInput);
+        mTankDrive.tankDrive(xboxLeftStickYInput, xboxRightStickXInput);
     }
 
 }
