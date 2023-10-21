@@ -3,7 +3,7 @@ package frc.robot.sub;
 import frc.robot.data.PortMap;
 //import frc.robot.sub.ModifiedMotor;
 
-public class Drive extends ControlSubSystems
+public class TankDrive extends ControlSubSystems
 {
     private final ModifiedMotor motorFrontLeft;
     private final ModifiedMotor motorRearLeft;
@@ -11,16 +11,16 @@ public class Drive extends ControlSubSystems
     private final ModifiedMotor motorRearRight;
     DriveSave driveSave;
 
-    private static Drive mInstance = null;
+    private static TankDrive mInstance = null;
 
-    public static Drive getInstance() {
+    public static TankDrive getInstance() {
       if (mInstance == null) {
-          mInstance = new Drive();
+          mInstance = new TankDrive();
       }
       return mInstance;
   }
 
-   public Drive() 
+   public TankDrive() 
    {
           motorFrontLeft = new ModifiedMotor(PortMap.FRONTLEFT.portNumber);
           motorRearLeft = new ModifiedMotor(PortMap.REARLEFT.portNumber);
@@ -30,7 +30,7 @@ public class Drive extends ControlSubSystems
    }
 
 /**  Control Type: Left Stick controls Left side of Robot; Right Stick Control Right side of Robot (Used in tank)*/
-   public void drive(double left, double right, double speed)// determins drriving type
+   public void tankDrive(double left, double right, double speed)// determines driving type
    { 
      this.driveSave.frontleft = left;
      this.driveSave.backleft = left;
@@ -38,7 +38,7 @@ public class Drive extends ControlSubSystems
      this.driveSave.backright = right; 
    }
 /**  Control Type: Left Stick controls speed; Right Stick controls direction (Used in tank)*/
-   public void drive(double forward, double turn)
+   public void tankDrive(double forward, double turn)
    { 
      this.driveSave.frontleft = (-forward + (0.35 * turn));// + teleopDriftCorrect);  //subtract 0.02 here from leftY for Menoetius
      this.driveSave.backleft = (-forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.02 here to leftY for Menoetius
