@@ -63,7 +63,7 @@ public abstract class MissionBase {
     }*/
 
     public void interrupt() {
-        System.out.println("** Auto mode interrrupted!");
+        System.out.println("** Auto mode interrupted!");
         mIsInterrupted = true;
     }
 

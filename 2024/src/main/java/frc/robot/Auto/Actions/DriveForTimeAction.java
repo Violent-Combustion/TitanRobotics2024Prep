@@ -8,7 +8,7 @@ public class DriveForTimeAction implements Actions
     Timer timer;
     double seconds;
     double speed;
-    private TankDrive mDrive = null;
+    private TankDrive mTankDrive = null;
     /**
      * Run code once when the action is started, for setup
      */
@@ -30,7 +30,7 @@ public class DriveForTimeAction implements Actions
      */
     @Override
     public void update(){
-    mDrive.tankDrive(this.speed, 0);
+    mTankDrive.tankDrive(this.speed, 0);
     }
 
     /**
@@ -54,7 +54,7 @@ public class DriveForTimeAction implements Actions
      */
     @Override
     public void done(){
-        mDrive.tankDrive(0, 0);
+        mTankDrive.tankDrive(0, 0);
     }
 
 }

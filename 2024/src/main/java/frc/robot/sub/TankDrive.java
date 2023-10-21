@@ -5,10 +5,10 @@ import frc.robot.data.PortMap;
 
 public class TankDrive extends ControlSubSystems
 {
-    private final ModifiedMotor motorFrontLeft;
-    private final ModifiedMotor motorRearLeft;
-    private final ModifiedMotor motorFrontRight;
-    private final ModifiedMotor motorRearRight;
+    private final ModifiedMotor motorTankFrontLeft;
+    private final ModifiedMotor motorTankRearLeft;
+    private final ModifiedMotor motorTankFrontRight;
+    private final ModifiedMotor motorTankRearRight;
     DriveSave driveSave;
 
     private static TankDrive mInstance = null;
@@ -22,47 +22,47 @@ public class TankDrive extends ControlSubSystems
 
    public TankDrive() 
    {
-          motorFrontLeft = new ModifiedMotor(PortMap.FRONTLEFT.portNumber);
-          motorRearLeft = new ModifiedMotor(PortMap.REARLEFT.portNumber);
-          motorFrontRight = new ModifiedMotor(PortMap.FRONTRIGHT.portNumber);
-          motorRearRight = new ModifiedMotor(PortMap.REARRIGHT.portNumber); 
+          motorTankFrontLeft = new ModifiedMotor(PortMap.FRONTLEFT.portNumber);
+          motorTankRearLeft = new ModifiedMotor(PortMap.REARLEFT.portNumber);
+          motorTankFrontRight = new ModifiedMotor(PortMap.FRONTRIGHT.portNumber);
+          motorTankRearRight = new ModifiedMotor(PortMap.REARRIGHT.portNumber); 
           driveSave = new DriveSave();
    }
 
 /**  Control Type: Left Stick controls Left side of Robot; Right Stick Control Right side of Robot (Used in tank)*/
    public void tankDrive(double left, double right, double speed)// determines driving type
    { 
-     this.driveSave.frontleft = left;
-     this.driveSave.backleft = left;
-     this.driveSave.frontright = right;
-     this.driveSave.backright = right; 
+     this.driveSave.tankFrontLeft = left;
+     this.driveSave.tankBackLeft = left;
+     this.driveSave.tankFrontRight = right;
+     this.driveSave.tankBackRight = right; 
    }
 /**  Control Type: Left Stick controls speed; Right Stick controls direction (Used in tank)*/
    public void tankDrive(double forward, double turn)
    { 
-     this.driveSave.frontleft = (-forward + (0.35 * turn));// + teleopDriftCorrect);  //subtract 0.02 here from leftY for Menoetius
-     this.driveSave.backleft = (-forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.02 here to leftY for Menoetius
-     this.driveSave.frontright = (forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.015 here to rightY for And-You
-     this.driveSave.backright = (forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.015 here to rightY forAnd-You
+     this.driveSave.tankFrontLeft = (-forward + (0.35 * turn));// + teleopDriftCorrect);  //subtract 0.02 here from leftY for Menoetius
+     this.driveSave.tankBackLeft = (-forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.02 here to leftY for Menoetius
+     this.driveSave.tankFrontRight = (forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.015 here to rightY for And-You
+     this.driveSave.tankBackRight = (forward + (0.35 * turn));// + teleopDriftCorrect); //add 0.015 here to rightY forAnd-You
    }
 
    /**Saves the current state the motors should be in */
    private class DriveSave
    {
-     public double frontleft;
-     public double frontright;
-     public double backleft;
-     public double backright;
+     public double tankFrontLeft;
+     public double tankFrontRight;
+     public double tankBackLeft;
+     public double tankBackRight;
    }
 
    @Override
    /*Updates the state the motors are in */
    public void update()
    {
-     motorFrontLeft.set(this.driveSave.frontleft);
-     motorRearRight.set(this.driveSave.backright);
-     motorRearLeft.set(this.driveSave.backleft);
-     motorFrontRight.set(this.driveSave.frontright);
+     motorTankFrontLeft.set(this.driveSave.tankFrontLeft);
+     motorTankRearRight.set(this.driveSave.tankBackRight);
+     motorTankRearLeft.set(this.driveSave.tankBackLeft);
+     motorTankFrontRight.set(this.driveSave.tankFrontRight);
    }
 
     void tank()
