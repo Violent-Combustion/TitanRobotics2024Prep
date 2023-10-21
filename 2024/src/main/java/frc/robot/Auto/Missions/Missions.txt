@@ -6,7 +6,7 @@ Example:
 Current Missions:
 
 Explanation: Missions are a set of actions (see actions 
-for more details) run in a sequence mission are what are
+for more details) run in a sequence. Missions are what are
 supposed to be called by autonomous.
 
-routine: is were the actions are run.
+routine: is where the actions are run.

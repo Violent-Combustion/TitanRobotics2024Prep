@@ -11,5 +11,5 @@ Current:
 
     Controllers: (needs to be rewriten and added)
 
-Sub is a spliting of commonly used functions into their
+Sub is a splitting of commonly used functions into their
 own files to increasing reability and debugging of code.

@@ -26,8 +26,8 @@ public class Control extends Teleopsubsystem {
      * and the right joystick controls the right side of the robot. 
      */
     public void tank(){
-        double xboxLeftStickYInput = controllers.getStick(ButtonMap.XboxLEFTSTICKY);
-        double xboxRightStickXInput = controllers.getStick(ButtonMap.XboxRIGHTSTICKX);
+        double xboxLeftStickYInput = controllers.getStickXbox(ButtonMap.XboxLEFTSTICKY);
+        double xboxRightStickXInput = controllers.getStickXbox(ButtonMap.XboxRIGHTSTICKX);
         mDrive.drive(xboxLeftStickYInput, xboxRightStickXInput);
     }
 

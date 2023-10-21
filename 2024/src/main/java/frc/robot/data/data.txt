@@ -1,1 +1,1 @@
-Data is were all hardware based data is stored.
+Data is where all hardware based data is stored.
