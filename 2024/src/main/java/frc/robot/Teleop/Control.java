@@ -1,16 +1,19 @@
 package frc.robot.Teleop;
 
 import frc.robot.sub.TankDrive;
+import frc.robot.sub.SwerveDrive;
 import frc.robot.data.ButtonMap;
 import frc.robot.sub.Controllers;
 
 public class Control extends Teleopsubsystem {
     private TankDrive mTankDrive = null;
+    private SwerveDrive mSwerveDrive = null;
     //private SwerveDrive mSwerveDrive = null;
     private final Controllers controllers;
 
     public Control()
     {
+        mSwerveDrive = SwerveDrive.getInstance();
         mTankDrive = TankDrive.getInstance();
         controllers = new Controllers();
     }
@@ -19,6 +22,7 @@ public class Control extends Teleopsubsystem {
     public void telopUpdate()
     {
         this.tank();
+        this.swerve();
         mTankDrive.update();
     } 
 
@@ -30,6 +34,13 @@ public class Control extends Teleopsubsystem {
         double xboxLeftStickYInput = controllers.getStickXbox(ButtonMap.XboxLEFTSTICKY);
         double xboxRightStickXInput = controllers.getStickXbox(ButtonMap.XboxRIGHTSTICKX);
         mTankDrive.tankDrive(xboxLeftStickYInput, xboxRightStickXInput);
+    }
+    
+    public void swerve(){
+        double flightAxisXInput = controllers.getStickFlight(ButtonMap.FlightSTICKX);
+        double flightAxisYInput = controllers.getStickFlight(ButtonMap.FlightSTICKY);
+        double flightAxisZInput = controllers.getStickFlight(ButtonMap.FlightSTICKZ);
+        mSwerveDrive.SwerveDriveMath(flightAxisXInput, flightAxisYInput, flightAxisZInput);
     }
 
 }

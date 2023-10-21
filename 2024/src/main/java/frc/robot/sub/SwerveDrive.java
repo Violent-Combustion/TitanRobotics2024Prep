@@ -1,13 +1,17 @@
 package frc.robot.sub;
+
 import java.lang.Math;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj2.command.PIDCommand;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+
 import frc.robot.data.PortMap;
+import frc.robot.sub.Controllers;
 
 public class SwerveDrive extends ControlSubSystems
 {
@@ -20,8 +24,19 @@ public class SwerveDrive extends ControlSubSystems
     public PIDController pidController;
     DriveSave driveSave;
 
+    private static SwerveDrive mSwerveInstance = null;
+
+    public static SwerveDrive getInstance() {
+      if (mSwerveInstance == null) {
+          mSwerveInstance = new SwerveDrive();
+      }
+      return mSwerveInstance;
+  }
+
+
     public SwerveDrive()
     {
+        pidController = new PIDController(1, 0, 0);
         angleMotor = new CANSparkMax(PortMap.clawCANID.portNumber, MotorType.kBrushless); //change if different motors are used
         speedMotor = new CANSparkMax(PortMap.clawCANID.portNumber, MotorType.kBrushless); //change if different motors are used
         angleMotorEncoder = angleMotor.getEncoder();
@@ -49,13 +64,10 @@ public class SwerveDrive extends ControlSubSystems
         double frontLeftAngle = Math.atan2(b, c) / Math.PI; //Angle for the front left wheel found from the arctan of the left/right part and the forward/backward part of the desired vector for the motor, divided by pi to convert it to a value between -1 and 1 for the direction motor
     }
 
-    public void SwerveDriveMathToWheels (int angleMotor, int speedMotor, int encoder)
+    public void SwerveDriveMathToWheels (double swerveSpeed, double swerveAngle)
     {
-        pidController = new PIDController(1, 0, 0, new AnalogInput (encoder), this.angleMotor);
-
-        pidController.setOutputRange(-1, 1);
-        pidController.setContinuous ();
-        pidController.enable ();
+        speedMotor.set (swerveSpeed);
+        
     }
     
     /*Saves the current state the motors should be in */
@@ -73,7 +85,7 @@ public class SwerveDrive extends ControlSubSystems
     public void update()
     {
       SwerveDriveMath(Length, Width, Length);
-      SwerveDriveMathToWheels(0, 0, 0);
+      SwerveDriveMathToWheels();
     }
 
     void swerve() 
